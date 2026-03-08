@@ -1,21 +1,336 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/logo.svg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-    rel="stylesheet">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kenenisa Beyan</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kenenisa Beyan - Full-Stack Engineer</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#6366f1', // Indigo 500
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Smooth hover animations and custom utilities */
+    .glass-nav {
+      background-color: rgba(15, 23, 42, 0.85);
+      /* slate-900 with opacity */
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+  </style>
 </head>
 
-<body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.jsx"></script>
+<body class="bg-slate-900 text-slate-300 font-sans antialiased selection:bg-indigo-500/30 overflow-x-hidden">
+
+  <!-- Navigation Bar -->
+  <nav class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <div class="flex-shrink-0">
+          <a href="#home" class="flex items-center gap-3 group">
+            <div
+              class="w-10 h-10 bg-indigo-500 text-white rounded-full flex items-center justify-center font-bold text-xl group-hover:bg-indigo-400 transition-colors shadow-lg shadow-indigo-500/30">
+              K
+            </div>
+            <span
+              class="text-white font-bold text-xl tracking-tight group-hover:text-indigo-400 transition-colors">Kenenisa</span>
+          </a>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:block">
+          <ul class="flex space-x-8 items-center">
+            <li><a href="#home"
+                class="text-slate-300 hover:text-white hover:text-indigo-400 transition-colors font-medium">Home</a>
+            </li>
+            <li><a href="#work"
+                class="text-slate-300 hover:text-white hover:text-indigo-400 transition-colors font-medium">Work</a>
+            </li>
+            <li><a href="#skills"
+                class="text-slate-300 hover:text-white hover:text-indigo-400 transition-colors font-medium">Skills</a>
+            </li>
+            <li><a href="#projects"
+                class="text-slate-300 hover:text-white hover:text-indigo-400 transition-colors font-medium">Projects</a>
+            </li>
+            <li><a href="#contact"
+                class="text-slate-300 hover:text-white hover:text-indigo-400 transition-colors font-medium">Contact</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Mobile menu button -->
+        <div class="md:hidden flex items-center">
+          <button id="mobile-menu-btn"
+            class="text-slate-300 hover:text-white focus:outline-none p-2 rounded-lg hover:bg-slate-800 transition-colors"
+            aria-label="Toggle Menu">
+            <i class="fas fa-bars text-2xl" id="menu-icon"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu (Hidden by default) -->
+    <div id="mobile-menu"
+      class="hidden md:hidden bg-slate-800/95 backdrop-blur-md border-b border-slate-700 absolute w-full left-0 shadow-xl overflow-hidden">
+      <ul class="px-4 py-4 space-y-1">
+        <li><a href="#home"
+            class="block px-4 py-3 text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700 rounded-lg transition-colors mobile-link">Home</a>
+        </li>
+        <li><a href="#work"
+            class="block px-4 py-3 text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700 rounded-lg transition-colors mobile-link">Work</a>
+        </li>
+        <li><a href="#skills"
+            class="block px-4 py-3 text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700 rounded-lg transition-colors mobile-link">Skills</a>
+        </li>
+        <li><a href="#projects"
+            class="block px-4 py-3 text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700 rounded-lg transition-colors mobile-link">Projects</a>
+        </li>
+        <li><a href="#contact"
+            class="block px-4 py-3 text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700 rounded-lg transition-colors mobile-link">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 min-h-screen flex items-center">
+    <!-- Background decorative blobs -->
+    <div
+      class="absolute top-20 right-0 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[100px] -z-10 pointer-events-none">
+    </div>
+    <div
+      class="absolute bottom-0 left-10 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[80px] -z-10 pointer-events-none">
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 w-full">
+      <div class="flex flex-col-reverse lg:flex-row items-center gap-16 lg:gap-20">
+
+        <!-- Left Content: Text -->
+        <div class="w-full lg:w-3/5 flex flex-col items-center lg:items-start text-center lg:text-left">
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-6 leading-tight">
+            Hello, I'm <span class="text-indigo-500 inline-block relative mt-2 lg:mt-0">Kenenisa Beyan
+              <svg class="absolute w-full h-3 -bottom-1 left-0 text-indigo-500/30" viewBox="0 0 100 10"
+                preserveAspectRatio="none">
+                <path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="3" fill="transparent" />
+              </svg>
+            </span>
+          </h1>
+
+          <p class="text-lg sm:text-xl text-slate-400 mb-10 max-w-2xl leading-relaxed">
+            A passionate <strong class="text-slate-200 font-semibold">Full-Stack Software Engineer</strong> focused on
+            crafting clean, scalable web applications. Experience with modern technologies like React, Node.js, and
+            Tailwind CSS.
+          </p>
+
+          <!-- Buttons -->
+          <div
+            class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-12 w-full sm:w-auto">
+            <a href="#"
+              class="w-full sm:w-auto px-8 py-4 bg-indigo-500 hover:bg-indigo-400 text-white font-semibold rounded-full shadow-lg shadow-indigo-500/20 transition-all transform hover:-translate-y-1 hover:shadow-indigo-500/40 flex items-center justify-center gap-2">
+              Download Resume <i class="fas fa-download text-sm ml-1"></i>
+            </a>
+            <a href="#contact"
+              class="w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-slate-700 hover:border-indigo-500 text-slate-300 hover:text-indigo-400 font-semibold rounded-full transition-all flex items-center justify-center gap-2">
+              Let's Talk <i class="fas fa-arrow-right text-sm ml-1"></i>
+            </a>
+          </div>
+
+          <!-- Social Icons -->
+          <div class="flex items-center gap-5">
+            <a href="#"
+              class="w-12 h-12 bg-slate-800 border border-slate-700 rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-indigo-500 hover:border-indigo-500 transition-all shadow-md hover:shadow-indigo-500/30 hover:-translate-y-1 group">
+              <i class="fab fa-github text-xl group-hover:scale-110 transition-transform"></i>
+            </a>
+            <a href="#"
+              class="w-12 h-12 bg-slate-800 border border-slate-700 rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-[#0077b5] hover:border-[#0077b5] transition-all shadow-md hover:shadow-[#0077b5]/30 hover:-translate-y-1 group">
+              <i class="fab fa-linkedin-in text-xl group-hover:scale-110 transition-transform"></i>
+            </a>
+            <a href="#"
+              class="w-12 h-12 bg-slate-800 border border-slate-700 rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-900 hover:border-slate-500 transition-all shadow-md hover:shadow-slate-500/30 hover:-translate-y-1 group">
+              <i class="fab fa-x-twitter text-xl group-hover:scale-110 transition-transform"></i>
+            </a>
+            <a href="#"
+              class="w-12 h-12 bg-slate-800 border border-slate-700 rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-900 hover:border-slate-500 transition-all shadow-md hover:shadow-white/10 hover:-translate-y-1 group">
+              <i class="fab fa-medium-m text-xl group-hover:scale-110 transition-transform"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Image / Profile -->
+        <div class="w-full lg:w-2/5 flex justify-center lg:justify-end">
+          <div class="relative w-64 h-64 sm:w-80 sm:h-80 group">
+            <!-- Decorative animated ring -->
+            <div
+              class="absolute -inset-4 rounded-full border border-indigo-500/30 opacity-50 group-hover:scale-105 transition-transform duration-700">
+            </div>
+            <div
+              class="absolute -inset-1 bg-gradient-to-tr from-indigo-500 to-blue-500 rounded-full blur-md opacity-40 group-hover:opacity-60 transition-opacity duration-500">
+            </div>
+
+            <!-- Image Container -->
+            <div
+              class="relative w-full h-full bg-slate-800 flex items-center justify-center rounded-full overflow-hidden border-4 border-slate-800/80 shadow-[0_0_40px_-10px_rgba(99,102,241,0.3)]">
+              <img
+                src="https://ui-avatars.com/api/?name=Kenenisa+Beyan&background=6366f1&color=fff&size=512&rounded=true&font-size=0.33"
+                alt="Kenenisa Beyan"
+                class="w-full h-full object-cover rounded-full group-hover:scale-105 transition-transform duration-700" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Stack Section -->
+  <section id="skills" class="py-24 bg-slate-800/40 border-y border-slate-800 relative">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <span class="text-sm font-bold tracking-widest text-indigo-500 uppercase mb-3 block">My Expertise</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-white">Technical Stack</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+        <!-- Frontend -->
+        <div
+          class="bg-slate-800/80 backdrop-blur-sm border border-slate-700 rounded-2xl p-8 shadow-xl shadow-slate-900/50 hover:border-indigo-500/50 hover:shadow-indigo-500/10 transition-all hover:-translate-y-1 group">
+          <div
+            class="w-14 h-14 bg-slate-900 rounded-xl flex items-center justify-center text-indigo-400 mb-6 shadow-md shadow-slate-900 group-hover:scale-110 group-hover:bg-indigo-500 group-hover:text-white transition-all duration-300">
+            <i class="fas fa-desktop text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-5">Frontend</h3>
+          <div class="flex flex-wrap gap-2">
+            <span
+              class="px-3 py-1.5 bg-slate-900 text-slate-300 text-sm font-medium rounded-full border border-slate-700 shadow-sm">React</span>
+            <span
+              class="px-3 py-1.5 bg-slate-900 text-slate-300 text-sm font-medium rounded-full border border-slate-700 shadow-sm">Next.js</span>
+            <span
+              class="px-3 py-1.5 bg-slate-900 text-slate-300 text-sm font-medium rounded-full border border-slate-700 shadow-sm">Tailwind
+              CSS</span>
+            <span
+              class="px-3 py-1.5 bg-slate-900 text-slate-300 text-sm font-medium rounded-full border border-slate-700 shadow-sm">JavaScript</span>
+            <span
+              class="px-3 py-1.5 bg-slate-900 text-slate-300 text-sm font-medium rounded-full border border-slate-700 shadow-sm">HTML/CSS</span>
+          </div>
+        </div>
+
+        <!-- Backend -->
+        <div
+          class="bg-slate-800/80 backdrop-blur-sm border border-slate-700 rounded-2xl p-8 shadow-xl shadow-slate-900/50 hover:border-indigo-500/50 hover:shadow-indigo-500/10 transition-all hover:-translate-y-1 group">
+          <div
+            class="w-14 h-14 bg-slate-900 rounded-xl flex items-center justify-center text-indigo-400 mb-6 shadow-md shadow-slate-900 group-hover:scale-110 group-hover:bg-indigo-500 group-hover:text-white transition-all duration-300">
+            <i class="fas fa-server text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-5">Backend</h3>
+          <div class="flex flex-wrap gap-2">
+            <span
+              class="px-3 py-1.5 bg-slate-900 text-slate-300 text-sm font-medium rounded-full border border-slate-700 shadow-sm">Node.js</span>
+            <span
+              class="px-3 py-1.5 bg-slate-900 text-slate-300 text-sm font-medium rounded-full border border-slate-700 shadow-sm">Express</span>
+            <span
+              class="px-3 py-1.5 bg-slate-900 text-slate-300 text-sm font-medium rounded-full border border-slate-700 shadow-sm">GraphQL</span>
+            <span
+              class="px-3 py-1.5 bg-slate-900 text-slate-300 text-sm font-medium rounded-full border border-slate-700 shadow-sm">Python</span>
+            <span
+              class="px-3 py-1.5 bg-slate-900 text-slate-300 text-sm font-medium rounded-full border border-slate-700 shadow-sm">REST
+              APIs</span>
+          </div>
+        </div>
+
+        <!-- Database -->
+        <div
+          class="bg-slate-800/80 backdrop-blur-sm border border-slate-700 rounded-2xl p-8 shadow-xl shadow-slate-900/50 hover:border-indigo-500/50 hover:shadow-indigo-500/10 transition-all hover:-translate-y-1 group">
+          <div
+            class="w-14 h-14 bg-slate-900 rounded-xl flex items-center justify-center text-indigo-400 mb-6 shadow-md shadow-slate-900 group-hover:scale-110 group-hover:bg-indigo-500 group-hover:text-white transition-all duration-300">
+            <i class="fas fa-database text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-5">Database</h3>
+          <div class="flex flex-wrap gap-2">
+            <span
+              class="px-3 py-1.5 bg-slate-900 text-slate-300 text-sm font-medium rounded-full border border-slate-700 shadow-sm">PostgreSQL</span>
+            <span
+              class="px-3 py-1.5 bg-slate-900 text-slate-300 text-sm font-medium rounded-full border border-slate-700 shadow-sm">MongoDB</span>
+            <span
+              class="px-3 py-1.5 bg-slate-900 text-slate-300 text-sm font-medium rounded-full border border-slate-700 shadow-sm">Redis</span>
+            <span
+              class="px-3 py-1.5 bg-slate-900 text-slate-300 text-sm font-medium rounded-full border border-slate-700 shadow-sm">Prisma</span>
+          </div>
+        </div>
+
+        <!-- Tools -->
+        <div
+          class="bg-slate-800/80 backdrop-blur-sm border border-slate-700 rounded-2xl p-8 shadow-xl shadow-slate-900/50 hover:border-indigo-500/50 hover:shadow-indigo-500/10 transition-all hover:-translate-y-1 group">
+          <div
+            class="w-14 h-14 bg-slate-900 rounded-xl flex items-center justify-center text-indigo-400 mb-6 shadow-md shadow-slate-900 group-hover:scale-110 group-hover:bg-indigo-500 group-hover:text-white transition-all duration-300">
+            <i class="fas fa-wrench text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-5">Tools & Aux</h3>
+          <div class="flex flex-wrap gap-2">
+            <span
+              class="px-3 py-1.5 bg-slate-900 text-slate-300 text-sm font-medium rounded-full border border-slate-700 shadow-sm">Git/GitHub</span>
+            <span
+              class="px-3 py-1.5 bg-slate-900 text-slate-300 text-sm font-medium rounded-full border border-slate-700 shadow-sm">Docker</span>
+            <span
+              class="px-3 py-1.5 bg-slate-900 text-slate-300 text-sm font-medium rounded-full border border-slate-700 shadow-sm">VS
+              Code</span>
+            <span
+              class="px-3 py-1.5 bg-slate-900 text-slate-300 text-sm font-medium rounded-full border border-slate-700 shadow-sm">Figma</span>
+            <span
+              class="px-3 py-1.5 bg-slate-900 text-slate-300 text-sm font-medium rounded-full border border-slate-700 shadow-sm">Vercel</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Script for mobile menu interactivity -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('mobile-menu-btn');
+      const menu = document.getElementById('mobile-menu');
+      const icon = document.getElementById('menu-icon');
+      const links = document.querySelectorAll('.mobile-link');
+
+      // Toggle menu open/close
+      btn.addEventListener('click', () => {
+        const isHidden = menu.classList.contains('hidden');
+
+        if (isHidden) {
+          menu.classList.remove('hidden');
+          icon.classList.remove('fa-bars');
+          icon.classList.add('fa-times');
+        } else {
+          menu.classList.add('hidden');
+          icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
+        }
+      });
+
+      // Close menu when a link is clicked
+      links.forEach(link => {
+        link.addEventListener('click', () => {
+          menu.classList.add('hidden');
+          icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
+        });
+      });
+    });
+  </script>
 </body>
 
 </html>

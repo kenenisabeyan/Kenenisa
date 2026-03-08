@@ -40,7 +40,7 @@ function App() {
       {isLoading ? (
         <LoadingScreen />
       ) : (
-        <div className="relative min-h-screen bg-[var(--background)] text-[var(--text-primary)] transition-colors duration-300">
+        <div className="relative min-h-screen bg-slate-900 text-slate-300 selection:bg-indigo-500/30 overflow-x-hidden font-sans antialiased">
           {enableScrollTracking && (
             <motion.div
               className="fixed top-0 left-0 right-0 h-1 bg-[var(--primary)] z-50 origin-left"

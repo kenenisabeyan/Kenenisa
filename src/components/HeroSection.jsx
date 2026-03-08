@@ -1,247 +1,65 @@
-import React, { useEffect, useState } from "react";
-import { FaGithub, FaXTwitter, FaLinkedin, FaMedium } from "react-icons/fa6";
-import { MdOutlineFileDownload } from "react-icons/md";
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+import React from "react";
+import { FaGithub, FaLinkedinIn, FaMediumM } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+import { FiDownload, FiArrowRight } from "react-icons/fi";
 
 const HeroSection = () => {
-  const [nameHovered, setNameHovered] = useState(false);
-  const [stackHovered, setStackHovered] = useState(false);
-  const controls = useAnimation();
-  const [ref, inView] = useInView({
-    threshold: 0.1,
-    triggerOnce: false,
-  });
-
-  useEffect(() => {
-    if (inView) {
-      controls.start("visible");
-    } else {
-      controls.start("hidden");
-    }
-  }, [controls, inView]);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 24, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        ease: [0.16, 1, 0.3, 1],
-      },
-    },
-  };
-
   return (
-    <motion.section
-      ref={ref}
-      initial="hidden"
-      animate={controls}
-      variants={containerVariants}
-      className="relative pt-32 pb-12 px-6 max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16 lg:gap-24 overflow-hidden min-h-[90vh] justify-center" id="home"
-    >
-      {/* Subtle background elements */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
-        <div className="absolute -top-40 -left-40 w-80 h-80 bg-[var(--primary)] rounded-full filter blur-[100px] opacity-10"></div>
-        <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-[var(--primary)] rounded-full filter blur-[120px] opacity-10"></div>
-        <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-[var(--primary)] rounded-full filter blur-[90px] opacity-15 animate-float-slow"></div>
-      </div>
-
-      {/* Profile Image */}
-      <motion.div
-        variants={itemVariants}
-        className="w-full md:w-2/5 flex flex-col items-center relative"
-      >
-        <div className="relative group w-72 h-72">
-          {/* Premium monochrome ring */}
-          <motion.div
-            className="absolute -inset-3 rounded-full overflow-hidden"
-            animate={{ rotate: 360 }}
-            transition={{
-              duration: 15,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          >
-            <div className="w-full h-full bg-gradient-to-r from-[var(--surface-highlight)] via-[var(--border)] to-[var(--surface-highlight)] opacity-60"></div>
-          </motion.div>
-
-          {/* Subtle inner glow */}
-          <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-[var(--primary)]/20 to-[var(--primary)]/10 opacity-0 group-hover:opacity-100 blur-sm transition-all duration-700"></div>
-
-          {/* Profile image container */}
-          <div className="relative w-72 h-72 rounded-full shadow-2xl z-10 overflow-hidden bg-[var(--surface)] border-4 border-[var(--border)] group-hover:border-[var(--primary)]/30 transition-all duration-500">
-            <img
-              src="logo.png"
-              alt="Profile portrait"
-              className="w-full h-full object-contain p-6 transform transition-all duration-500 group-hover:scale-105"
-              style={{ objectPosition: "center" }}
-            />
-
-            {/* Premium shine effect on hover */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[var(--primary)]/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none"></div>
+    <section id="home" className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 min-h-screen flex items-center">
+      <div className="absolute top-20 right-0 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
+      <div className="absolute bottom-0 left-10 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[80px] -z-10 pointer-events-none"></div>
+      
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
+        <div className="flex flex-col-reverse lg:flex-row items-center gap-16 lg:gap-20">
+          <div className="w-full lg:w-3/5 flex flex-col items-center lg:items-start text-center lg:text-left">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-6 leading-tight">
+              Hello, I'm <span className="text-indigo-500 inline-block relative mt-2 lg:mt-0">Kenenisa Beyan
+                <svg className="absolute w-full h-3 -bottom-1 left-0 text-indigo-500/30" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 50 10 100 5" fill="none" stroke="currentColor" strokeWidth="3"/></svg>
+              </span>
+            </h1>
+            
+            <p className="text-lg sm:text-xl text-slate-400 mb-10 max-w-2xl leading-relaxed">
+              A passionate <strong className="text-slate-200 font-semibold">Full-Stack Software Engineer</strong> focused on crafting clean, scalable web applications. Experience with modern technologies like React, Node.js, and Tailwind CSS.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-12 w-full sm:w-auto">
+              <a href="/resume.pdf" download className="w-full sm:w-auto px-8 py-4 bg-indigo-500 hover:bg-indigo-400 text-white font-semibold rounded-full shadow-lg shadow-indigo-500/20 transition-all transform hover:-translate-y-1 hover:shadow-indigo-500/40 flex items-center justify-center gap-2">
+                Download Resume <FiDownload className="text-sm ml-1" />
+              </a>
+              <a href="#contact" className="w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-slate-700 hover:border-indigo-500 text-slate-300 hover:text-indigo-400 font-semibold rounded-full transition-all flex items-center justify-center gap-2">
+                Let's Talk <FiArrowRight className="text-sm ml-1" />
+              </a>
+            </div>
+            
+            <div className="flex items-center gap-5">
+              <a href="https://github.com/kenenisabeyan" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-slate-800 border border-slate-700 rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-indigo-500 hover:border-indigo-500 transition-all shadow-md hover:shadow-indigo-500/30 hover:-translate-y-1 group">
+                <FaGithub className="text-xl group-hover:scale-110 transition-transform" />
+              </a>
+              <a href="https://linkedin.com/in/keno05" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-slate-800 border border-slate-700 rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-[#0077b5] hover:border-[#0077b5] transition-all shadow-md hover:shadow-[#0077b5]/30 hover:-translate-y-1 group">
+                <FaLinkedinIn className="text-xl group-hover:scale-110 transition-transform" />
+              </a>
+              <a href="https://x.com/kenenisa93941" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-slate-800 border border-slate-700 rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-900 hover:border-slate-500 transition-all shadow-md hover:shadow-slate-500/30 hover:-translate-y-1 group">
+                <FaXTwitter className="text-xl group-hover:scale-110 transition-transform" />
+              </a>
+              <a href="#" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-slate-800 border border-slate-700 rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-900 hover:border-slate-500 transition-all shadow-md hover:shadow-white/10 hover:-translate-y-1 group">
+                <FaMediumM className="text-xl group-hover:scale-110 transition-transform" />
+              </a>
+            </div>
           </div>
-
-          {/* Floating particles effect */}
-          <div className="absolute inset-0 rounded-full overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-            {[...Array(6)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-1 h-1 bg-[var(--text-secondary)] rounded-full"
-                animate={{
-                  y: [0, -20, 0],
-                  opacity: [0, 1, 0],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  delay: i * 0.3,
-                  ease: "easeInOut",
-                }}
-                style={{
-                  left: `${20 + i * 15}%`,
-                  bottom: "10%",
-                }}
-              />
-            ))}
+          
+          <div className="w-full lg:w-2/5 flex justify-center lg:justify-end">
+            <div className="relative w-64 h-64 sm:w-80 sm:h-80 group">
+              <div className="absolute -inset-4 rounded-full border border-indigo-500/30 opacity-50 group-hover:scale-105 transition-transform duration-700"></div>
+              <div className="absolute -inset-1 bg-gradient-to-tr from-indigo-500 to-blue-500 rounded-full blur-md opacity-40 group-hover:opacity-60 transition-opacity duration-500"></div>
+              
+              <div className="relative w-full h-full bg-slate-800 flex items-center justify-center rounded-full overflow-hidden border-4 border-slate-800/80 shadow-[0_0_40px_-10px_rgba(99,102,241,0.3)]">
+                <img src="/logo.png" alt="Kenenisa Beyan" className="w-full h-full object-cover rounded-full group-hover:scale-105 transition-transform duration-700" />
+              </div>
+            </div>
           </div>
         </div>
-
-        {/* Enhanced Social Links */}
-        <motion.ul variants={itemVariants} className="flex gap-6 mt-12">
-          {[
-            { icon: <FaGithub />, url: "https://github.com/kenenisabeyan", label: "GitHub" },
-            { icon: <FaXTwitter />, url: "#", label: "Twitter" },
-            { icon: <FaLinkedin />, url: "https://linkedin.com/in/keno05", label: "LinkedIn" },
-            { icon: <FaMedium />, url: "https://x.com/kenenisa94931", label: "Medium" },
-          ].map((social, index) => (
-            <motion.li key={index} whileHover={{ y: -6, scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-              <a
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={social.label}
-                className="relative p-3 block group transition-all duration-300"
-              >
-                <span className="absolute inset-0 bg-[var(--surface-highlight)] rounded-full scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300 shadow-lg"></span>
-                <span className="absolute inset-0 rounded-full border border-transparent group-hover:border-[var(--primary)]/20 transition-all duration-500"></span>
-
-                <span className={`relative z-10 text-2xl text-[var(--text-secondary)] transition-all duration-300 group-hover:text-[var(--primary)]`}>
-                  {social.icon}
-                </span>
-              </a>
-            </motion.li>
-          ))}
-        </motion.ul>
-      </motion.div>
-
-
-      {/* Text Content */}
-      <motion.div
-        variants={itemVariants}
-        className="w-full md:w-3/5 text-center md:text-left"
-      >
-        <motion.h1
-          className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <span className="text-[var(--text-primary)]">Hello, I'm </span>
-          <span
-            className="relative inline-block"
-            onMouseEnter={() => setNameHovered(true)}
-            onMouseLeave={() => setNameHovered(false)}
-          >
-            <span className="relative z-10 text-[var(--primary)]">
-              Kenenisa Beyan
-            </span>
-            <motion.span
-              className="absolute bottom-1 left-0 w-full h-1 bg-[var(--primary)]"
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: nameHovered ? 1 : 0 }}
-              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              style={{ originX: 0 }}
-            />
-          </span>
-        </motion.h1>
-
-        <motion.p
-          className="text-lg lg:text-xl text-[var(--text-secondary)] max-w-2xl mx-auto md:mx-0 leading-relaxed mb-10"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
-        >
-          Full-Stack Software Engineer specializing in modern web technologies.
-          Expert in{" "}
-          <span
-            className="relative inline-block"
-            onMouseEnter={() => setStackHovered(true)}
-            onMouseLeave={() => setStackHovered(false)}
-          >
-            <span className="relative z-10 font-semibold text-[var(--primary)]">
-              JavaScript, React, Next.js, Express, PostgreSQL & MongoDB
-            </span>
-            <motion.span
-              className="absolute bottom-0 left-0 w-full h-0.5 bg-[var(--primary)]"
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: stackHovered ? 1 : 0 }}
-              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              style={{ originX: 0 }}
-            />
-          </span>
-          . Building scalable, high-performance applications with clean code and exceptional user experiences.
-        </motion.p>
-
-        <motion.div
-          className="flex flex-wrap justify-center md:justify-start gap-5"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.5 }}
-        >
-          <motion.a
-            href="/resume.pdf"
-            download
-            whileHover={{
-              y: -3,
-              boxShadow: "var(--shadow-lg)",
-            }}
-            whileTap={{ scale: 0.95 }}
-            className="relative overflow-hidden bg-[var(--primary)] text-white font-semibold px-8 py-4 rounded-full inline-flex items-center gap-2 transition-all duration-300 shadow-md group"
-          >
-            <span className="relative z-10">Download Resume</span>
-            <MdOutlineFileDownload className="size-5 relative z-10 transition-transform duration-300 group-hover:translate-y-1" />
-            <span className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-          </motion.a>
-
-          <motion.a
-            href="#contact"
-            whileHover={{
-              y: -3,
-              backgroundColor: "rgba(var(--primary-rgb), 0.1)", // fallback if rgb vars not set, but using transparent overlay
-              borderColor: "var(--primary)",
-            }}
-            whileTap={{ scale: 0.95 }}
-            className="relative overflow-hidden border-2 border-[var(--primary)] text-[var(--text-primary)] font-semibold px-8 py-4 rounded-full inline-flex items-center gap-2 transition-all duration-300 hover:text-[var(--primary)] group"
-          >
-            <span className="relative z-10">Let's Talk</span>
-            <span className="absolute inset-0 bg-[var(--primary)]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-          </motion.a>
-        </motion.div>
-      </motion.div>
-    </motion.section>
+      </div>
+    </section>
   );
 };
 
